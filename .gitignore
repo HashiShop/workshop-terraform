@@ -1,1 +1,7 @@
+# terraform artifacts and states
+.terraform
+terraform.tfstate.d/
+
+# configuration
 .env
+backend.configuration

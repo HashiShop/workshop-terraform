@@ -1,0 +1,7 @@
+bucket = ""
+key = ""
+lock_table = ""
+
+access_key = ""
+secret_key = ""
+region = ""
