@@ -1,5 +1,5 @@
-resource "aws_security_group" "http_in" {
-    name = "http in"
+resource "aws_security_group" "hextris" {
+    name = "hextris"
     description = "Allow http inbound traffic"
 
     ingress {
@@ -17,7 +17,7 @@ resource "aws_security_group" "http_in" {
     }
 
     tags {
-        Name = "http in"
+        Name = "hextris"
         Environment = "${terraform.env}"
         Application = "${var.app_name}"
     }
