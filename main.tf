@@ -50,3 +50,8 @@ resource "aws_instance" "hextris" {
         Environment = "${terraform.env}"
     }
 }
+
+# output
+output "hextris_url" {
+    value = "${aws_instance.hextris.public_dns}"
+}
