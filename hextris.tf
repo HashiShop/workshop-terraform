@@ -1,25 +1,4 @@
-# Variables
-variable "AWS_ACCESS_KEY" {}
-variable "AWS_SECRET_KEY" {}
-variable "AWS_REGION" {
-    default = "eu-west-1"
-}
-variable "amis" {
-    default = {
-        "hextris" = "ami-627a7f04"
-        "amzn_linux" = "ami-df99a4b9"
-    }
-}
-
-# Providers
-provider "aws" {
-    access_key = "${var.AWS_ACCESS_KEY}"
-    secret_key = "${var.AWS_SECRET_KEY}"
-    region = "${var.AWS_REGION}"
-}
-
-# Resources
-## Security Groups
+# Security Groups
 resource "aws_security_group" "http_in" {
     name = "http in"
     description = "Allow http inbound traffic"
@@ -44,7 +23,7 @@ resource "aws_security_group" "http_in" {
     }
 }
 
-## Instances
+# Instances
 resource "aws_instance" "hextris" {
     depends_on = ["aws_security_group.http_in"]
 
@@ -59,20 +38,13 @@ resource "aws_instance" "hextris" {
     }
 }
 
-resource "aws_instance" "amzn_linux" {
-    ami = "${lookup(var.amis, "amzn_linux")}"
-    instance_type = "t2.micro"
-
-    tags {
-        Name = "amazon linux"
-        Environment = "${terraform.env}"
-    }
-}
-
 # output
+## url
 output "hextris_url" {
     value = "${aws_instance.hextris.public_dns}"
 }
+
+## ip
 output "hextris_ip" {
     value = "${aws_instance.hextris.public_ip}"
 }
