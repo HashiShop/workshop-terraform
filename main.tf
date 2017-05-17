@@ -48,7 +48,7 @@ resource "aws_security_group" "http_in" {
 resource "aws_instance" "hextris" {
     depends_on = ["aws_security_group.http_in"]
 
-    ami = "ami-627a7f04"
+    ami = "${lookup(var.amis, "hextris")}"
     instance_type = "t2.micro"
 
     vpc_security_group_ids = ["${aws_security_group.http_in.id}"]
@@ -60,7 +60,7 @@ resource "aws_instance" "hextris" {
 }
 
 resource "aws_instance" "amzn_linux" {
-    ami = "ami-df99a4b9"
+    ami = "${lookup(var.amis, "amzn_linux")}"
     instance_type = "t2.micro"
 
     tags {
