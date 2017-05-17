@@ -29,6 +29,11 @@ destroy: ## Destroy Terraform-managed infrastructure : ## ENV="dev" OPTIONS= mak
 	@make select-env
 	@terraform destroy $(OPTIONS)
 
+get: ## Download and install modules for the configuration : ## ENV="dev" OPTIONS= make get
+	$(info --> switching to terraform $(ENV) environment)
+	@make select-env
+	@terraform get $(OPTIONS)
+
 graph: ## Create a visual graph of Terraform resources : ## ENV="dev" OPTIONS= make graph
 	$(info --> switching to terraform $(ENV) environment)
 	@make select-env
