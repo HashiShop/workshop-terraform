@@ -73,3 +73,6 @@ resource "aws_instance" "amzn_linux" {
 output "hextris_url" {
     value = "${aws_instance.hextris.public_dns}"
 }
+output "hextris_ip" {
+    value = "${aws_instance.hextris.public_ip}"
+}
