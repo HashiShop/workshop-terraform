@@ -37,3 +37,16 @@ resource "aws_security_group" "http_in" {
         Environment = "${terraform.env}"
     }
 }
+
+## Instances
+resource "aws_instance" "hextris" {
+    ami = "ami-627a7f04"
+    instance_type = "t2.micro"
+
+    vpc_security_group_ids = ["${aws_security_group.http_in.id}"]
+
+    tags {
+        Name = "hextris"
+        Environment = "${terraform.env}"
+    }
+}
