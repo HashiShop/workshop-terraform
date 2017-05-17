@@ -40,6 +40,8 @@ resource "aws_security_group" "http_in" {
 
 ## Instances
 resource "aws_instance" "hextris" {
+    depends_on = ["aws_security_group.http_in"]
+
     ami = "ami-627a7f04"
     instance_type = "t2.micro"
 
