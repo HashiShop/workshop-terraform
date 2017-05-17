@@ -46,7 +46,7 @@ resource "aws_instance" "hextris" {
     vpc_security_group_ids = ["${aws_security_group.http_in.id}"]
 
     tags {
-        Name = "hextris"
+        Name = "hextris web app"
         Environment = "${terraform.env}"
     }
 }
