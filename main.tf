@@ -53,6 +53,16 @@ resource "aws_instance" "hextris" {
     }
 }
 
+resource "aws_instance" "amzn_linux" {
+    ami = "ami-df99a4b9"
+    instance_type = "t2.micro"
+
+    tags {
+        Name = "amazon linux"
+        Environment = "${terraform.env}"
+    }
+}
+
 # output
 output "hextris_url" {
     value = "${aws_instance.hextris.public_dns}"
